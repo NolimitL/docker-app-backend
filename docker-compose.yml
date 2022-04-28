@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+  database:
+    image: "mongo"
+    volumes:
+      - data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: leonid
+      MONGO_INITDB_ROOT_PASSWORD: pass
+
+  server:
+    build: ./
+    container_name: server
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    env_file:
+      - ./.env
+    depends_on:
+      - database
+
+  app:
+    build: ../react-simple
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../react-simple/src:/app/src
+    stdin_open: true
+    tty: true
+    depends_on:
+      - server
+
+volumes:
+  data:
