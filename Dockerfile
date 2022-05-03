@@ -8,10 +8,10 @@ RUN yarn install
 
 COPY . .
 
-EXPOSE 80
+EXPOSE 8080
 
 ENV MONGODB_USERNAME=leonid
 ENV MONGODB_PASSWORD=pass
-ENV MONGODB_URL=localhost
+ENV MONGODB_URL=database
 
-CMD ["npm ", "start"]
+CMD ["npm", "start"]

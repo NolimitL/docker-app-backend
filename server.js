@@ -5,7 +5,7 @@ import bodyParser from "body-parser";
 import {connectDB, getProducts, setProduct} from "./database.js";
 
 const app = express()
-const _PORT = process.env.PORT || 80
+const _PORT = process.env.PORT || 8080
 
 app.use(bodyParser.json())
 
