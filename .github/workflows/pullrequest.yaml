@@ -23,10 +23,10 @@ jobs:
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           signoff: false
-          branch: example-patches
+          branch: new-patches
           base: main
           delete-branch: true
-          title: '[Example] Update report'
+          title: 'PR creating report'
           body: |
             Update report
             - Updated with *today's* date
@@ -35,10 +35,8 @@ jobs:
             [1]: https://github.com/peter-evans/create-pull-request
           labels: |
             report
-            automated pr
-          assignees: peter-evans
-          reviewers: peter-evans
-          team-reviewers: |
-            owners
-            maintainers
+            automated PR
+          assignees: NolimitL
+          reviewers: NolimitL
+          team-reviewers: owners
           draft: false
