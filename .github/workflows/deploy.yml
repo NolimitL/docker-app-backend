@@ -2,7 +2,7 @@ name: 'Autodeploy on main'
 
 on:
   push:
-    branches:    
+    branches:
       - 'main'
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
       uses: shimataro/ssh-key-action@v2
       with:
         key: ${{ secrets.SERVER_GITHUB_ACTIONS }}
-        known_hosts: ${{ secrets.SSH_SERVER_HOST }} 
+        known_hosts: ${{ secrets.SSH_SERVER_HOST }}
 
     - name: Check hosts
       run: cat ~/.ssh/known_hosts
@@ -25,11 +25,14 @@ jobs:
     - name: Check hosts
       run: cat ~/.ssh/known_hosts
 
-#    - name: Install SSHPASS
-#      run: sudo apt-get install sshpass
+    - name: Install RClone
+      run: sudo apt install rclone -y
 
-    - name: Connect to server via SSH with Password
-      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_HOST }}
+    - name: Version RClone
+      run: rclone version
+
+#    - name: Connect to server via SSH with Password
+#      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_HOST }}
 #    - name: Deploy with rsync
 #      run: rsync -avz -e "ssh -p 22" hellofile.txt ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_HOST }}:/home/ubuntu/dev/docker-app-backend/
 
