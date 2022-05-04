@@ -10,5 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Current directory
+      run: ll
+
+#    - name: Change directory
+#      run: cd
+
     - name: Start docker compose
       run: docker-compose up
