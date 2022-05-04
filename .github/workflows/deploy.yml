@@ -7,46 +7,62 @@ on:
 
 jobs:
   sshconnect:
+    name: SSH Connect
     runs-on: ubuntu-latest
-
     steps:
-    - name: Install SSH Key
-      uses: shimataro/ssh-key-action@v2
-      with:
-        key: ${{ secrets.SERVER_GITHUB_ACTIONS }}
-        known_hosts: ${{ secrets.SSH_SERVER_HOST }}
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_SERVER_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASS }}
+          key: ${{ secrets.SSH_SERVER_PKEY }}
+          port: ${{ secrets.SSH_SERVER_PORT }}
+          script_stop: true
+          script: |
+            whoami
+            ls -a
 
-    - name: Check hosts
-      run: cat ~/.ssh/known_hosts
-
-    - name: Adding Known Hosts
-      run: ssh-keyscan -H ${{ secrets.SSH_SERVER_HOST }} >> ~/.ssh/known_hosts
-
-    - name: Check hosts
-      run: cat ~/.ssh/known_hosts
-
-#    - name: Install RClone
-#      run: sudo apt install rclone -y
+#    runs-on: ubuntu-latest
 #
-#    - name: Version RClone
-#      run: rclone version
-
-#    - name: Connect to server via SSH with Password
-#      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_HOST }}
-    - name: Deploy with rsync
-      run: rsync -avz -e "ssh -p 22" hellofile.txt ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_HOST }}:/home/ubuntu/dev/docker-app-backend/
-
-    - name: Watch current directive
-      run: ls
-
-    - name: Go to current directive
-      run: cd /home/dev/
-
-#    - name: Create image and run docker container.
-#      run: docker-compose up
-
-#    - name: Check active containers status.
-#      run: docker ps
-
-#    - name: Check all containers status.
-#      run: docker ps -a
+#    steps:
+#    - name: Install SSH Key
+#      uses: shimataro/ssh-key-action@v2
+#      with:
+#        key: ${{ secrets.SERVER_GITHUB_ACTIONS }}
+#        known_hosts: ${{ secrets.SSH_SERVER_HOST }}
+#
+#    - name: Check hosts
+#      run: cat ~/.ssh/known_hosts
+#
+#    - name: Adding Known Hosts
+#      run: ssh-keyscan -H ${{ secrets.SSH_SERVER_HOST }} >> ~/.ssh/known_hosts
+#
+#    - name: Check hosts
+#      run: cat ~/.ssh/known_hosts
+#
+##    - name: Install RClone
+##      run: sudo apt install rclone -y
+##
+##    - name: Version RClone
+##      run: rclone version
+#
+##    - name: Connect to server via SSH with Password
+##      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_HOST }}
+#    - name: Deploy with rsync
+#      run: rsync -avz -e "ssh -p 22" hellofile.txt ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_HOST }}:/home/ubuntu/dev/docker-app-backend/
+#
+#    - name: Watch current directive
+#      run: ls
+#
+#    - name: Go to current directive
+#      run: cd /home/dev/
+#
+##    - name: Create image and run docker container.
+##      run: docker-compose up
+#
+##    - name: Check active containers status.
+##      run: docker ps
+#
+##    - name: Check all containers status.
+##      run: docker ps -a
