@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Current directory
-      run: ll
+      run: ls
 
 #    - name: Change directory
 #      run: cd
