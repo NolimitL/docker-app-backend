@@ -25,8 +25,13 @@ jobs:
     - name: Check hosts
       run: cat ~/.ssh/known_hosts
 
-    - name: Deploy with rsync
-      run: rsync -avz -e "ssh -p 22" hellofile.txt ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_HOST }}:/home/ubuntu/dev/docker-app-backend/
+    - name: Install SSHPASS
+      run: apt-get install sshpass
+
+    - name: Connect to server via SSH with Password
+      run: sshpass -p 1234567890 ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_HOST }}
+#    - name: Deploy with rsync
+#      run: rsync -avz -e "ssh -p 22" hellofile.txt ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_HOST }}:/home/ubuntu/dev/docker-app-backend/
 
     - name: Watch current directive
       run: ls
