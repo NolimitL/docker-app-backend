@@ -26,7 +26,7 @@ jobs:
       run: cat ~/.ssh/known_hosts
 
     - name: Install SSHPASS
-      run: apt-get install sshpass
+      run: sudo apt-get install sshpass
 
     - name: Connect to server via SSH with Password
       run: sshpass -p 1234567890 ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_HOST }}
