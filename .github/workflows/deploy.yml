@@ -16,6 +16,9 @@ jobs:
         key: ${{ secrets.SERVER_GITHUB_ACTIONS }}
         known_hosts: ${{ secrets.SSH_SERVER_HOST }} 
 
+    - name: Check hosts
+      run: cat ~/.ssh/known_hosts
+
     - name: Adding Known Hosts
       run: ssh-keyscan -H ${{ secrets.SSH_SERVER_HOST }} >> ~/.ssh/known_hosts
 
