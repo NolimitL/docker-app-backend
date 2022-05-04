@@ -26,16 +26,19 @@ jobs:
       run: cat ~/.ssh/known_hosts
 
     - name: Deploy with rsync
-      run: rsync -n ./dist/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_HOST }}:/home/dev/docker-app-backend/dist/
-  
+      run: rsync -avz -e "ssh -p 22" hellofile.txt ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_HOST }}:/home/ubuntu/dev/docker-app-backend/
+
+    - name: Watch current directive
+      run: ls
+
     - name: Go to current directive
       run: cd /home/dev/
 
-    - name: Create image and run docker container.
-      run: docker-compose up
+#    - name: Create image and run docker container.
+#      run: docker-compose up
 
-    - name: Check active containers status.
-      run: docker ps
+#    - name: Check active containers status.
+#      run: docker ps
 
-    - name: Check all containers status.
-      run: docker ps -a 
+#    - name: Check all containers status.
+#      run: docker ps -a
