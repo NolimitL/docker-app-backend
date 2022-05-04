@@ -26,10 +26,10 @@ jobs:
       run: cd /home/ubuntu/dev/
 
     - name: Create image and run docker container.
-    run: docker-compose up
+      run: docker-compose up
 
     - name: Check active containers status.
-    run: docker ps
+      run: docker ps
 
     - name: Check all containers status.
-    run: docker ps -a 
+      run: docker ps -a 
