@@ -20,8 +20,9 @@ jobs:
           port: ${{ secrets.SSH_SERVER_PORT }}
           script_stop: true
           script: |
-            whoami
             ls -a
+            cd dev
+            ls
 
 #    runs-on: ubuntu-latest
 #
