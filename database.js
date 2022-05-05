@@ -22,7 +22,7 @@ export function connectDB(){
             console.error(error.message)
             return true
         }else{
-            console.info("Database is connected!")
+            console.info("Database is connected!!!")
         }
     })
 }
