@@ -20,6 +20,7 @@ export function connectDB(){
                 }, (error) => {
         if (error){
             console.error(error.message)
+            console.log('DONE!')
             return true
         }else{
             console.info("Database is connected!!!100")
