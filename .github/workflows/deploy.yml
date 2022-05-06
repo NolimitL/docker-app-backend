@@ -21,7 +21,7 @@ jobs:
           script_stop: true
           script: |
             cd dev
-            ./script.sh
+            ./deploy-server.sh
 
 #    runs-on: ubuntu-latest
 #
