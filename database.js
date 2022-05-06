@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import {v4 as uuid4} from "uuid";
+import e from "express";
 
 const ProductSchema = new mongoose.Schema({
     product: String,
@@ -19,11 +20,10 @@ export function connectDB(){
                     authSource: "admin"
                 }, (error) => {
         if (error){
-            console.error(error.message)
-            console.log('DONE!')
+            console.log('Connection error: ', error)
             return true
         }else{
-            console.info("Database is connected!!!100")
+            console.info("Database is connected!")
         }
     })
 }
