@@ -10,6 +10,9 @@ const ProductSchema = new mongoose.Schema({
 })
 const ProductModel = mongoose.model("Products", ProductSchema)
 
+/**
+ *
+ */
 export function connectDB(){
     mongoose.connect(`mongodb://${process.env.MONGODB_URL}:27017/local`,
         { useNewUrlParser: true,
@@ -28,6 +31,10 @@ export function connectDB(){
     })
 }
 
+/**
+ *
+ * @param res
+ */
 export function getProducts(res){
     ProductModel.find((err, data) => {
         if (err){
@@ -41,6 +48,11 @@ export function getProducts(res){
     })
 }
 
+/**
+ *
+ * @param data
+ * @param res
+ */
 export function setProduct(data, res){
     const newProduct = new ProductModel({
         product: data.product,
@@ -52,6 +64,20 @@ export function setProduct(data, res){
             res.status(500).send()
         }else{
             console.log('Data:', data)
+            res.status(200).send()
+        }
+    })
+}
+
+/**
+ *
+ */
+export function removeAllProducts(res){
+    ProductModel.remove({}, (error) => {
+        if (error){
+            console.log("Error:", error)
+            res.status(500).send()
+        }else{
             res.status(200).send()
         }
     })

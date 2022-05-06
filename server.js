@@ -2,7 +2,7 @@ import express from 'express'
 import {default as axios} from "axios";
 import cors from "cors";
 import bodyParser from "body-parser";
-import {connectDB, getProducts, setProduct} from "./database.js";
+import {connectDB, getProducts, setProduct, removeAllProducts} from "./database.js";
 
 const app = express()
 const _PORT = process.env.PORT || 8080
@@ -27,6 +27,11 @@ app.post('/product', async (req, res) => {
     const data = req.body
     console.log('Body:', data)
     setProduct(data, res)
+})
+
+app.delete('/products', async (req, res) => {
+    console.log("Request DELETE: /products")
+    removeAllProducts(res)
 })
 
 connectDB()
