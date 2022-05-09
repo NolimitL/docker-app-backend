@@ -6,29 +6,15 @@ on:
       - 'staging'
 
 jobs:
-  createPullRequest:
+  create-pr-on-push:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@1.0.0
 
-      - name: Create Pull Request
-        id: cpr
-        uses: peter-evans/create-pull-request@v4
+      - name: Create pull request
+        uses: thomaseizinger/create-pull-request@master
         with:
-          token: ${{ secrets.PAT }}
-          commit-message: Update report
-          committer: GitHub <noreply@github.com>
-          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-          signoff: false
-          branch: staging
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+          head: staging
           base: main
-          delete-branch: false
-          title: 'Merge: Staging to Main'
-          body: |
-            Merge report:
-            - Updated with *today's* date
-          labels: automated PR
-          assignees: NolimitL
-          reviewers: NolimitL
-          team-reviewers: owners
-          draft: false
+          title: "An automatically created PR!"
