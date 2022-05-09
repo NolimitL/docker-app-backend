@@ -49,7 +49,7 @@ export function getProducts(res){
 }
 
 /**
- *
+ * This is adding function
  * @param data
  * @param res
  */
