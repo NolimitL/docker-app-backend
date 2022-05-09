@@ -21,6 +21,7 @@ jobs:
           ${{% for commit in github.event.commits %}}
             - {{commit}}
           ${{% endfor %}}"
+
           pr_label: "merge-main"
           pr_draft: false
           pr_allow_empty: false                      # Creates pull request even if there are no changes
