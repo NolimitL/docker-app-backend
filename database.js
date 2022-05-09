@@ -70,7 +70,7 @@ export function setProduct(data, res){
 }
 
 /**
- *
+ * This function is for deleting a whole list of groceries
  */
 export function removeAllProducts(res){
     ProductModel.remove({}, (error) => {
