@@ -49,7 +49,7 @@ export function getProducts(res){
 }
 
 /**
- *
+ * This function let set up the product to DB
  * @param data
  * @param res
  */
