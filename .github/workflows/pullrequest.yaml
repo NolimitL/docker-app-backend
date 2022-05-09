@@ -18,7 +18,10 @@ jobs:
           destination_branch: "main"
           pr_title: "[Merge request]: ${{ github.ref }} into main"
           pr_body: "*An automated PR* /n
-          ${{github.event.commits}}"
+          ${{% for commit in github.event.commits %}}
+            - {{commit}}
+          ${{% endfor %}}"
+
           pr_label: "merge-main"
           pr_draft: false
           pr_allow_empty: false                      # Creates pull request even if there are no changes
