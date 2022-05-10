@@ -23,4 +23,6 @@ jobs:
           script_stop: true
           script: |
             cd dev
+            echo ${{ github.ref }}
+            echo ${{ github.head_ref }}
             ./deploy-dev.sh ${{github.head_ref}}
