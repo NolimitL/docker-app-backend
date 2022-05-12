@@ -23,7 +23,7 @@ export function connectDB(){
                     authSource: "admin"
                 }, (error) => {
         if (error){
-            console.log('[Connection error]: ', error)
+            console.log('Connection error: ', error)
             return true
         }else{
             console.info("Database is connected!")
