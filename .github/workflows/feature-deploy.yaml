@@ -4,8 +4,7 @@ on:
   pull_request:
     types:
       - labeled
-    branches:
-      - 'CU-**'
+    branches: ['dev','CU-**']
 
 
 jobs:
@@ -24,4 +23,4 @@ jobs:
           script_stop: true
           script: |
             cd dev
-            ./deploy-dev.sh ${{github.ref}}
+            ./deploy-dev.sh ${{github.head_ref}}
